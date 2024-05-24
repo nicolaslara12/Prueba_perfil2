@@ -1,0 +1,28 @@
+[{
+  "_id": {
+    "$oid": "664ffedc65b932c344dfe50d"
+  },
+  "id_producto": 1,
+  "nombre": "celular",
+  "percio": 20000000,
+  "cantidad": 2
+},
+{
+  "_id": {
+    "$oid": "664fffac65b932c344dfe510"
+  },
+  "id_producto": 2,
+  "nombre": "teclado",
+  "precio": 100000,
+  "cantidad": 1
+},
+{
+  "_id": {
+    "$oid": "6650002f65b932c344dfe512"
+  },
+  "id_producto": 3,
+  "nombre": "monitor",
+  "precio": 400000,
+  "cantidad": 3
+}]
+

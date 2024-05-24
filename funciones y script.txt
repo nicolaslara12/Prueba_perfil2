@@ -1,0 +1,72 @@
+Parte 1:
+
+4. Implementa una función que reciba el email de un usuario como parámetro y
+devuelva su nombre.
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `nombre_por_email`(email VARCHAR(255)) RETURNS varchar(255) CHARSET utf8mb4
+BEGIN
+    DECLARE nombre_usuario VARCHAR(255);
+    SELECT nombre INTO nombre_usuario FROM bdperfil2.usuarios WHERE usuarios.email = email LIMIT 1;
+    RETURN nombre_usuario;
+END
+
+----------------//----------------//------------//----------//-----------//--
+
+5. Implementa una función que reciba el nombre de un usuario como parámetro y
+actualice su contraseña en la base de datos.
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizar_contrasena`(IN nombre_usuario VARCHAR(255), IN nueva_contrasena VARCHAR(255))
+BEGIN
+    UPDATE usuarios
+    SET contrasena = nueva_contrasena
+    WHERE nombre = nombre_usuario;
+END
+
+-----------//----------------//-------------//-----------------//
+Parte 2
+
+Script
+<?php
+// Configuración de la base de datos
+$host = 'localhost';
+$dbname = 'dbperfil2';
+$user = 'root';
+$pass = '123456';
+
+// Carpeta donde se almacenará la copia de seguridad
+$backupDir = '/E:/SCRIPT copia/';
+if (!is_dir($backupDir)) {
+    mkdir($backupDir, 0755, true);
+}
+
+// Nombre del archivo de backup
+$backupFile = $backupDir . $dbname . '_' . date('Y-m-d_H-i-s') . '.sql';
+
+// Comando para realizar la copia de seguridad
+$command = "mysqldump --host=$host --user=$user --password=$pass $dbname > $backupFile";
+
+// Ejecutar el comando
+system($command, $output);
+
+// Verificar el resultado
+if ($output == 0) {
+    echo "Copia de seguridad realizada con éxito: $backupFile\n";
+} else {
+    echo "Error al realizar la copia de seguridad.\n";
+}
+?>php
+
+---------//---------------//--------------//---------------//-----------//-----
+
+Parte 4:
+- Implementa una función que reciba el nombre de un producto como parámetro y
+devuelva su precio.
+
+function obtenerPrecio(nombre) {
+    var producto = db1.productos.findOne({ nombre: nombre }),
+    if (producto) {
+        return producto.precio,
+    } else {
+        throw new Error('Producto no encontrado'),
+    }
+}
